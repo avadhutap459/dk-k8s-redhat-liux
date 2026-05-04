@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dk-k8s-redhat-liux
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dk-k8s-redhat-liux
+  template:
+    metadata:
+      labels:
+        app: dk-k8s-redhat-liux
+    spec:
+      containers:
+      - name: dk-k8s-redhat-liux
+        image: avadhut18/dk-k8s-redhat-liux:v1
+        ports:
+        - containerPort: 80
