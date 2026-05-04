@@ -1,0 +1,6 @@
+@dk_k8s_redhat_liux_HostAddress = http://localhost:5248
+
+GET {{dk_k8s_redhat_liux_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
