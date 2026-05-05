@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: filestorage-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: filestorage
+  template:
+    metadata:
+      labels:
+        app: filestorage
+    spec:
+      containers:
+      - name: filestorage-container
+        image: avadhut18/filestorageapp
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: storage-volume
+          mountPath: /app/data   # same as .NET path
+      volumes:
+      - name: storage-volume
+        persistentVolumeClaim:
+          claimName: file-pvc
