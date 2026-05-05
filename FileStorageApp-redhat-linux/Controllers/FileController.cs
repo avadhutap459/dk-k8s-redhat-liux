@@ -9,7 +9,7 @@ namespace FileStorageApp_redhat_linux.Controllers
     {
         private readonly string storagePath = "/app/data";
 
-        [HttpPost("create")]
+        [HttpGet("create")]
         public IActionResult CreateFile()
         {
             if (!Directory.Exists(storagePath))
