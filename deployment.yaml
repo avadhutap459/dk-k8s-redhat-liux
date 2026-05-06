@@ -13,14 +13,14 @@ spec:
         app: dk-k8s-redhat-linux
     spec:
       securityContext:
-        fsGroup: 2000   # 👈 THIS FIXES PERMISSION
+        fsGroup: 1000   # 👈 THIS FIXES PERMISSION
       containers:
       - name: dk-k8s-redhat-linux
+        securityContext:
+          runAsUser: 1000
         image: avadhut18/dk-k8s-redhat-linux:v1 
         ports:
         - containerPort: 80
-        securityContext:
-          runAsUser: 1000
         volumeMounts:
         - name: storage-volume
           mountPath: /app/data
