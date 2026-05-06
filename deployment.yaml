@@ -17,3 +17,10 @@ spec:
         image: avadhut18/dk-k8s-redhat-linux:v1 
         ports:
         - containerPort: 80
+        volumeMounts:
+        - name: storage-volume
+          mountPath: /app/data
+      volumes:
+      - name: storage-volume
+        persistentVolumeClaim:
+          claimName: file-pvc
