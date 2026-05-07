@@ -18,7 +18,15 @@ spec:
       - name: dk-k8s-redhat-linux
         securityContext:
           runAsUser: 1000
-        image: avadhut18/dk-k8s-redhat-linux:v1 
+        image: avadhut18/dk-k8s-redhat-linux:v1
+        # 🔹 Environment Variables
+        env:
+        - name: MY_ENV
+          value: "Hello_From_Kubernetes"
+
+        # 🔹 Arguments
+        args:
+        - "--myArg=Hello_From_Args"
         ports:
         - containerPort: 80
         volumeMounts:
