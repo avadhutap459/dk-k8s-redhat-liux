@@ -1,0 +1,45 @@
+version: "3.9"
+
+services:
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "StrongP@ssw0rd!"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sql_data:/var/opt/mssql
+    networks:
+      - emp-network
+
+  empmagapi:
+    build:
+      context: .
+    image: avadhut18/dk-k8s-redhat-linux:v4
+    container_name: dk-k8s-redhat-linux-container
+    ports:
+      - "3009:8080"
+    environment:
+      ConnectionStrings__DefaultConnection: >
+        Server=sqlserver,1433;
+        Database=EmployeeDb;
+        User Id=sa;
+        Password=StrongP@ssw0rd!;
+        TrustServerCertificate=True;
+    depends_on:
+      - sqlserver
+    networks:
+      - emp-network
+    volumes:
+      - app_data_volume:/app/data
+
+networks:
+  emp-network:
+    driver: bridge
+
+volumes:
+  sql_data:
+  app_data_volume:
