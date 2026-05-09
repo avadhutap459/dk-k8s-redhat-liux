@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: dk-k8s-redhat-linux
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: dk-k8s-redhat-linux
