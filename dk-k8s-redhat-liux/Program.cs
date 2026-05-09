@@ -26,4 +26,9 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+app.MapGet("/GetEnv", () =>
+{
+    return $"Hello from Pod: {Environment.MachineName}";
+});
+
 app.Run();
